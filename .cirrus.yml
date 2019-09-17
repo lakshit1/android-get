@@ -1,0 +1,30 @@
+task:
+  name: Installing Repo 
+  script:
+    - mkdir ~/bin
+    - PATH=~/bin:$PATH
+    - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+    - chmod a+x ~/bin/repo 
+
+task:
+  name: Initializing a Repo client
+  script:
+    - mkdir android
+    - cd android
+    - git config --global user.name "Jony"
+    - git config --global user.email "jonyg1355@gmail.com"
+    - repo init -u https://android.googlesource.com/platform/manifest --quiet 
+ 
+task:
+  name: Downloading the Android source tree 
+  script:
+    - repo sync --quiet 
+ 
+task:
+  name: Uploading to gitlab
+  script:
+    - git remote add origin https://gitlab.com/lakshit1/android.git
+    - git push -u origin --all
+    - git push -u origin --tags
+  
+
