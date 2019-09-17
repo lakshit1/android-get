@@ -1,3 +1,6 @@
+container: 
+  image: node:latest
+
 task:
   name: Installing Repo 
   script:
